@@ -1,0 +1,14 @@
+<div class="container-dialog" id=messagesPopup>
+  <div mat-dialog-content class="text-center modal-body">
+    <div class="popup-header">{{ dialogMessage }}</div>
+  </div>
+  <div class="dialog-footer text-right mt-4">
+    <button class="mat-focus-indicator yes-btn mat-raised-button mr-2" mat-raised-button
+      (click)="onConfirm()">
+      Yes
+    </button>
+    <button mat-raised-button class="mat-raised-button btn-round" (click)="onDismiss()">
+      No
+    </button>
+  </div>
+</div>

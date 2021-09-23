@@ -1,0 +1,173 @@
+.child-sidemenu {
+    background-color: white;
+    height: 570px;
+    border-radius: 4px;
+    width: 16%;
+    position: fixed;
+}
+
+.s-menu {
+    text-align: center;
+    padding: 50px 0px 0px 6px;
+}
+
+.s-menu svg {
+    fill: #ffffff;
+}
+
+.s-menu svg:hover {
+    fill: #01A0E1;
+}
+
+.s-menu svg:active {
+    fill: #01A0E1;
+}
+
+.s-menu li {
+    list-style-type: none;
+    color: #ececec;
+    padding: 20px 0px;
+    cursor: pointer;
+}
+
+.s-menu li:hover {
+    background-color: rgb(249, 249, 249);
+    border-radius: 6px 0px 0px 6px;
+    color: #1faadf;
+}
+
+.s-menu li h4 {
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+.row {
+    margin-right: 0px;
+}
+
+.active {
+    background-color: #a3a3a3 !important;
+    fill: #ffffff !important;
+}
+
+.min-hight {
+    min-height: 520px;
+    margin-bottom: 10px;
+}
+
+
+/*style for the collapse menu*/
+
+a.list-group-item-success,
+button.list-group-item-success {
+    color: #fdfdfd;
+}
+
+.list-group-item-success {
+    color: #8f9b9b;
+    background-color: #252525;
+    border-bottom: 1px solid #001;
+    border-top: 1px solid #001;
+    border-left: 0px;
+}
+
+.list-group-item {
+    background-color: #21a5d8;
+    border-bottom: 1px solid #b6b6b7;
+    border-top: 1px solid #b6b6b7;
+    color: #fdfdfd;
+    text-transform: capitalize;
+}
+
+a.list-group-item-success:focus,
+a.list-group-item-success:hover,
+button.list-group-item-success:focus,
+button.list-group-item-success:hover,
+.list-group-item.active,
+.list-group-item.active:focus,
+.list-group-item.active:hover {
+    background-color: #004c69;
+    color: #fff !important;
+    border-color: transparent;
+}
+
+a.list-group-item:focus,
+a.list-group-item:hover,
+button.list-group-item:focus,
+button.list-group-item:hover {
+    color: #fff;
+    text-decoration: none;
+    background-color: #004c69;
+}
+
+.Iot-menu svg {
+    width: 20%;
+    height: 30px;
+    padding-right: 10px;
+    float: left;
+    fill: #ffffff;
+}
+
+.Iot-menu h4 {
+    font-size: 14px;
+    padding-top: 6px;
+    margin-bottom: 6px;
+    margin-top: 0px;
+    font-family: Roboto-Bold;
+    text-transform: uppercase;
+}
+
+.fa-caret-down {
+    float: right;
+}
+
+a.list-group-item.plef30 {
+    padding-left: 46px;
+    background-color: #9b5397;
+}
+
+.UpDown a:after {
+    font-family: Fontawesome;
+    content: '\f077';
+    float: right;
+    font-size: 10px;
+    font-weight: 300;
+}
+
+.UpDown a.collapse:after {
+    font-family: Fontawesome;
+    content: '\f078';
+}
+
+.Iot-menu i {
+    color: #d5e2e6;
+    font-size: 18px;
+    width: 20%;
+    float: left;
+    padding-top: 5px;
+}
+.pad-0{
+    padding : 0;
+}
+.sidemenu-block{
+    height:125px;
+    padding: 6px 7px 10px;
+    border: solid 1px #e7e7e7;
+    background-color: var(--white-two);
+    cursor: pointer;
+}
+.mat-sidenav{
+    width:250px;
+}
+.sidemenu-title{
+    padding-bottom: 10px;
+}
+.mat-content{
+    padding-top: 60px;
+}
+.menu-space{
+    margin :15px 0px;
+}
+.dashboard{
+    margin :15px 0px
+}

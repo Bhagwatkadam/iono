@@ -1,0 +1,212 @@
+<section class="vedor-device">
+    <div class="container-fluid">
+        <div class="child-vedor">
+            <div class="row">
+                <div class="col-sm-8">
+                    <h4 class="heading" *ngIf="activeFormId === 1">ADD device connectivity & metadata</h4>
+                    <h4 class="heading" *ngIf="activeFormId === 2">Device metadata</h4>
+                </div>
+                <div class="col-sm-4">
+                    <div class="remove">
+                        <button (click)="toggleActiveScreen(2)" *ngIf="activeFormId === 2">Back </button>
+                    </div>
+                </div>
+            </div>
+
+            <form [formGroup]="vedorForm">
+                <ng-container *ngIf="activeFormId === 1">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label>Vendor Name</label>
+                                <input type="text" name="name" id="name" placeholder="Enter vendor name"
+                                    formControlName="name"
+                                    [ngClass]="{'is-invalid': f.name.errors && (f.name.touched || f.name.dirty || submitted)}">
+                                <div *ngIf="f.name.errors && (f.name.touched || f.name.dirty || submitted)"
+                                    class="text-danger">
+                                    <div *ngIf="f.name.errors.required">Vendor name is required</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="">Device type</label>
+                                <input type="text" name="deviceType" id="deviceType" placeholder="Enter device type"
+                                    formControlName="deviceType"
+                                    [ngClass]="{'is-invalid': f.deviceType.errors && (f.deviceType.touched || f.deviceType.dirty || submitted)}">
+                                <div *ngIf="f.deviceType.errors && (f.deviceType.touched || f.deviceType.dirty || submitted)"
+                                    class="text-danger">
+                                    <div *ngIf="f.deviceType.errors.required">Device Type is required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="checkValues">
+                        <input #upload type='checkbox' id='upload' (change)="0" checked><span> Upload through Xlsheet
+                        </span><br>
+                        <input #manual type='checkbox' id='manual' (change)="0"><span> Enter manually</span>
+                    </div>
+                    <div class="row" *ngIf='upload.checked'>
+                        <div class="col-sm-3">
+                            <div class="form-group DviceDta">
+                                <label for="">Device metadata</label>
+                                <div class="add-gallery">
+                                    <div class="topsapce">
+                                        <input type="file" multiple accept="">
+                                        <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                                        <p class="new">Upload</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" *ngIf="manual.checked">
+                        <div class="col-sm-4">
+                            <h4 class="heading">Connectivity</h4>
+                            <div class="form-group">
+                                <label>Protocol</label>
+                                <select name="protocol" [(ngModel)]="selectedValue" id="protocol"
+                                    formControlName="protocol"
+                                    [ngClass]="{'is-invalid': f.protocol.errors && (f.protocol.touched || f.protocol.dirty || submitted)}">
+                                    <option [value]="Selectprotocol" disabled>Select protocol</option>
+                                    <option value="HTTP">HTTP</option>
+                                    <option value="MQQT">MQQT</option>
+                                    <option value="OCPP">OCPP</option>
+                                </select>
+                                <div *ngIf="f.protocol.errors && (f.protocol.touched || f.protocol.dirty || submitted)"
+                                    class="text-danger">
+                                    <div *ngIf="f.protocol.errors.required">Vendor protocol is required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row"
+                        *ngIf="selectedValue === 'HTTP' || selectedValue === 'MQQT' || selectedValue === 'OCPP'">
+                        <div class="col-sm-4">
+                            <div class="form-group vedor-params">
+                                <input type="text" name="" id="" placeholder="Key">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group vedor-params">
+                                <input type="text" name="" id="" placeholder="Value">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="Cparams">
+                                <button (click)="addParams()">add</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="addNode" *ngIf="!parmValues">
+                        <div class="row">
+                            <div formArrayName="Params" *ngFor="let item of Params.controls; let i = index;">
+                                <div [formGroupName]='i'>
+                                    <div class="col-sm-4">
+                                        <div class="form-group vedor-params">
+                                            <input type="text" name="key" id="key" placeholder="Key"
+                                                formControlName="key">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group vedor-params">
+                                            <input type="text" name="value" id="value" placeholder="Value"
+                                                formControlName="value">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="removeparam">
+                                            <button (click)="removeParams(i)">remove </button>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="nextBtn">
+                        <button type="button" (click)="toggleActiveScreen(1)"
+                            [disabled]="vedorForm.get('name').invalid  ||vedorForm.get('deviceType').invalid">Next</button>
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="activeFormId === 2">
+                    <div class="vedor-parm-details">
+                        <div class="V-parms">
+                            <h4 class="heading">ADD parameters</h4>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <input type="text" name="" id="" placeholder="Parameter">
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <input type="text" name="" id="" placeholder="Value">
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="Cparams">
+                                        <button (click)="addDeviceParams()">add </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="addNode" *ngIf="!parmValues">
+                                <div class="row">
+                                    <div formArrayName="DeviceParams"
+                                        *ngFor="let item of DeviceParams.controls; let i = index;">
+                                        <div [formGroupName]='i'>
+                                            <div class="col-sm-4">
+                                                <div class="form-group vedor-params">
+                                                    <input type="text" name="key" id="key" placeholder="Parameter"
+                                                        formControlName="key">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group vedor-params">
+                                                    <input type="text" name="value" id="value" placeholder="Value"
+                                                        formControlName="value">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="removeparam">
+                                                    <button (click)="removeDeviceParams(i)">remove </button>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="nextBtn">
+                                <button type="button">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+            </form>
+        </div>
+        <div class="identity-table">
+            <h5>List of Vedors</h5>
+            <div class="overflow-sty">
+            </div>
+        </div>
+    </div>
+</section>
+<div id="deleteVendor" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content nodeMdlCnt">
+            <div class="modal-header Nmodel">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title title text-nrml">Are you sure you want to delete this file</h4>
+            </div>
+            <div class="modal-body delteBtns">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">yes</button>
+                <button type="button" data-dismiss="modal" class="btn btn-success">no</button>
+            </div>
+        </div>
+    </div>
+</div>

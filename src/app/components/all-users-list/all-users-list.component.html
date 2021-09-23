@@ -1,0 +1,104 @@
+<router-outlet (activate)="onActivate($event)"></router-outlet>
+<section class="global-font main-box">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="head-strip">
+                <div class="head-text global-font">
+                    Users
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid container-space">
+        <div class="row flex">
+            <div>
+                <button mat-raised-button class="fancy-btn" routerLink="/user-management">New User</button>
+            </div>
+
+            <div class="pull-right ml-auto">
+                <div class="flex">
+                    <div class="right-inner-addon input-container">
+                        <i class="fa fa-search"></i>
+                        <input type="text" class="search-global" (keyup)="applyFilter($event.target.value)"
+                            placeholder="Search" />
+                    </div>
+                    <div class="pt5px">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="table-responsive box-shadow">
+                <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+                   
+                    <!-- sNo Column -->
+                    <ng-container matColumnDef="sNo">
+                        <th mat-header-cell *matHeaderCellDef class="w-100"> <span class="tab-head-text"> S.No </span>
+                        </th>
+                        <td mat-cell *matCellDef="let element"
+                            class="sno">
+                            {{ element.sNo }} </td>
+                    </ng-container>
+
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> <span class="tab-head-text"> Name </span>
+                        </th>
+                        <td mat-cell *matCellDef="let element" class="name-id"
+                            > {{
+                            element.name }} </td>
+                    </ng-container>
+
+                    <!-- Email Type Column -->
+                    <ng-container matColumnDef="user_id">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> <span class="tab-head-text"> Email
+                            </span> </th>
+                        <td mat-cell *matCellDef="let element"
+                            class="name-id">
+                            {{element.user_id}} </td>
+                    </ng-container>
+
+                    <!-- Mobile Column -->
+                    <ng-container matColumnDef="mobile">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> <span class="tab-head-text"> Mobile
+                            </span> </th>
+                        <td mat-cell *matCellDef="let element" class="name-id">
+                            {{element.mobile}} </td>
+                    </ng-container>
+
+                    <!-- created on Column -->
+                    <ng-container matColumnDef="created_on">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> <span class="tab-head-text"> Created On
+                            </span> </th>
+                        <td mat-cell *matCellDef="let element" class="name-id">
+                            {{element.created_on | date:'medium'}} </td>
+                    </ng-container>
+
+                    <!-- Action Column -->
+                    <ng-container matColumnDef="action">
+                        <th mat-header-cell *matHeaderCellDef class="w-75"> <span class="tab-head-text"> </span> </th>
+                        <td mat-cell *matCellDef="let row text-right">
+                            <button mat-icon-button class="color" (click)="onSelectedItem(row)"
+                                [matMenuTriggerFor]="sendMenu">
+                                <mat-icon>more_vert</mat-icon>
+                            </button>
+                        </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+            </div>
+            <mat-paginator [pageSizeOptions]="[10, 20]" showFirstLastButtons></mat-paginator>
+        </div>
+    </div>
+</section>
+
+<mat-menu #sendMenu="matMenu">
+    <!-- <button mat-menu-item (click)="viewDeviceType()">View</button> -->
+    <button mat-menu-item (click)="delete()">Delete</button>
+</mat-menu>

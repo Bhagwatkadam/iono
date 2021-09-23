@@ -1,0 +1,23 @@
+<section class="main-box">
+    <div class="container-fluid">
+        <div class="row">
+            <table class="table table-striped text-center">
+              <thead>
+                <th>Application Label</th>
+                <th>Value</th>
+                <th>Created On</th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let d of resources">
+                  <td>{{ d.uiLabel }}</td>
+                  <td>{{ d.value }}</td>
+                  <td>{{ d.createdOn | date }}</td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+        <div class="row text-right close-box">
+          <button mat-button class="cls-btn" (click)="close()">Close</button>
+        </div>
+    </div>
+</section> 

@@ -1,0 +1,65 @@
+.panel-title a:after {
+    font-family: Fontawesome;
+    content: '\f077';
+    float: right;
+    font-size: 10px;
+    font-weight: 300;
+}
+
+.panel-title a.collapsed:after {
+    font-family: Fontawesome;
+    content: '\f078';
+}
+
+.child-mapping {
+    background-color: #ffffff;
+    padding: 10px 20px 0px 20px;
+    border-radius: 12px;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.06);
+    border-radius: 12px;
+}
+
+.next {
+    text-align: right;
+}
+
+.next button {
+    padding: 8px 30px;
+    text-transform: capitalize;
+    border: none;
+    background-color: #1fa8dc;
+    color: #ffffff;
+    border-radius: 4px;
+}
+
+.map-save {
+    text-align: right;
+    padding: 16px 0px;
+}
+
+.map-save button {
+    padding: 8px 30px;
+    text-transform: capitalize;
+    border: none;
+    background-color: #1fa8dc;
+    color: #ffffff;
+    border-radius: 4px;
+}
+
+.panel-title {
+    text-align: center;
+}
+
+.panel-title a {
+    text-decoration: none;
+    text-align: center;
+    color: #000000;
+    text-transform: uppercase;
+    font-family: Roboto-Medium;
+}
+
+i.fas.fa-equals {
+    font-size: 24px;
+    padding-top: 5px;
+}

@@ -1,0 +1,76 @@
+<mat-sidenav-container class="example-container">
+    <mat-sidenav [fixedInViewport]="true" [fixedTopGap]="60" #sidenav mode="side" [(opened)]="opened"
+        (opened)="events.push('open!')" (closed)="events.push('close!')">
+        <div class="row global-font">
+            <div class="col-sm-6 pad-0">
+                <div class="sidemenu-block" routerLink="dashboard" routerLinkActive="active">
+                    <div class="text-center dashboard">
+                        <div class="sidemenu-title">Dashboard</div>
+                        <img src="assets/images/icon-dashboard.png" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 pad-0">
+                <div class="sidemenu-block" routerLink="data-panal" routerLinkActive="active">
+                    <div class="text-center dashboard">
+                        <div class="sidemenu-title">Data Panal</div>
+                        <img src="assets/images/icon-reports-i-nactive.png" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 pad-0">
+                <div class="sidemenu-block" routerLink="all-devices-list" routerLinkActive="active">
+                    <div class="text-center menu-space">
+                        <div class="sidemenu-title">Devices</div>
+                        <img src="assets/images/icon-devices-inactive.png" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 pad-0">
+                <div class="sidemenu-block" routerLink="device-type-list" routerLinkActive="active">
+                    <div class="text-center menu-space">
+                        <div class="sidemenu-title">Device specs</div>
+                        <img src="assets/images/icon-specs-inactive.png" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 pad-0">
+                <div class="sidemenu-block" routerLink="cartridge-list" routerLinkActive="active">
+                    <div class="text-center menu-space">
+                        <div class="sidemenu-title">Cartridge</div>
+                        <img src="assets/images/icon-catridge.png" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 pad-0">
+                <div class="sidemenu-block" routerLink="discovery-scan-list" routerLinkActive="active">
+                    <div class="text-center menu-space">
+                        <div class="sidemenu-title">Discovery</div>
+                        <img src="assets/images/icon-discover-inactive.png" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 pad-0">
+                <div class="sidemenu-block" routerLink="all-users-list" routerLinkActive="active">
+                    <div class="text-center menu-space">
+                        <div class="sidemenu-title">Users</div>
+                        <img src="assets/images/icon-users-inactive.png" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 pad-0">
+                <div class="sidemenu-block" routerLink="dashboard-view" routerLinkActive="active">
+                    <div class="text-center menu-space">
+                        <div class="sidemenu-title">Reports</div>
+                        <img src="assets/images/icon-reports-i-nactive.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </mat-sidenav>
+    <mat-sidenav-content class="mat-content">
+        <img (click)="toggle()" class="toggle-menu" src="assets/images/icon-hide.png" alt="">
+        <app-header></app-header>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>

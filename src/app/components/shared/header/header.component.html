@@ -1,0 +1,38 @@
+<div id="custom-bootstrap-menu" class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-8">
+                <div class="navbar-header">
+                    <button type="button navbar-toggle" class="navbar-toggle"
+                       ><span class="sr-only">Toggle navigation</span><span
+                            class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+                    </button>
+                    <img class="header-logo" src="../../../assets/images/ionotical-2.png" alt="logo">
+                    <div class="welcom">
+                        Welcome, {{ getName() }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-4">
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="menu-icons"><a>
+                                <i class="fas fa-bell" aria-hidden="true" tooltip="Notifications" placement="top"></i>
+                                <span>0</span>
+                            </a>
+                        </li>
+                        <button class="user-icon" mat-icon-button [matMenuTriggerFor]="menu">
+                            <a data-toggle="dropdown" class="dropdown-toggle loginname pad-0">
+                                <img src="../../../assets/images/user.jpg" alt="Logo">
+                            </a>
+                        </button>
+                        <mat-menu #menu="matMenu">
+                            <button mat-menu-item routerLink="/admin-profile">Profile</button>
+                            <button mat-menu-item (click)="logout()">Logout</button>
+                        </mat-menu>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

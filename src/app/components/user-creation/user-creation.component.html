@@ -1,0 +1,110 @@
+<router-outlet (activate)="onActivate($event)"></router-outlet>
+<mat-card class="card global-font">
+    <div class="bg-standard">
+        <div class="ml-mr24">
+            <mat-icon routerLink="/all-users-list" class="mat-link">arrow_back</mat-icon>
+        </div>
+        <div class="card-title global-font">New User</div>
+    </div>
+    <mat-card-content>
+        <mat-horizontal-stepper linear #stepper>
+            <mat-step [stepControl]="personalDetailsFormGroup">
+                <form [formGroup]="personalDetailsFormGroup">
+                    <ng-template matStepLabel>Personal Details</ng-template>
+                    <div class="container-fluid personal-detail">
+                        <div class="row form-box">
+                            <div class="col-sm-4 text-center">
+                                <mat-form-field appearance="outline" class="custom-field">
+                                    <mat-label>Name *</mat-label>
+                                    <input matInput placeholder="Name" formControlName="name" reqred>
+                                    <mat-error *ngIf="p.name.errors && (p.name.touched || p.name.dirty || submitted)">
+                                        <span *ngIf="p.name.errors.required">Name is required</span>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-sm-4 text-center">
+                                <mat-form-field appearance="outline" class="custom-field">
+                                    <mat-label>Email *</mat-label>
+                                    <input matInput placeholder="E mail" formControlName="email">
+                                    <mat-error
+                                        *ngIf="p.email.errors && (p.email.touched || p.email.dirty || submitted)">
+                                        <span *ngIf="p.email.errors.required">Email is required</span>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-sm-4 text-center">
+                                <mat-form-field appearance="outline" class="custom-field">
+                                    <mat-label>Mobile *</mat-label>
+                                    <input matInput placeholder="Mobile" formControlName="mobile">
+                                    <mat-error
+                                        *ngIf="p.mobile.errors && (p.mobile.touched || p.mobile.dirty || submitted)">
+                                        <span *ngIf="p.mobile.errors.required">Mobile is required</span>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                        </div>
+
+                        <div class="row form-box">
+                            <div class="col-sm-4 text-center">
+                                <mat-form-field appearance="outline" class="custom-field">
+                                    <mat-label>Password *</mat-label>
+                                    <input matInput placeholder="Password" formControlName="password">
+                                    <mat-error
+                                        *ngIf="p.password.errors && (p.password.touched || p.password.dirty || submitted)">
+                                        <span *ngIf="p.password.errors.required">Password is required</span>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-sm-4 text-center">
+                                <mat-form-field appearance="outline" class="custom-field">
+                                    <mat-label>Confirm Password *</mat-label>
+                                    <input matInput placeholder="Password" formControlName="confirm_password">
+                                    <mat-error
+                                        *ngIf="p.confirm_password.errors && (p.confirm_password.touched || p.confirm_password.dirty || submitted)">
+                                        <span *ngIf="p.confirm_password.errors.required">required</span>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container-fluid bottom-strip">
+                        <div class="row pull-right action-container">
+                            <button class="cm-btn" mat-button routerLink="/all-users-list">Cancel</button>
+                            <button class="fancy-btn" mat-raised-button matStepperNext
+                                [disabled]="personalDetailsFormGroup.status == 'INVALID'">Next</button>
+                        </div>
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step [stepControl]="addressDetailsFormGroup">
+                <form [formGroup]="addressDetailsFormGroup">
+                    <ng-template matStepLabel>Address Details</ng-template>
+                    <div class="container-fluid">
+                        <div class="row form-box">
+                            <mat-form-field class="example-full-width" appearance="outline">
+                                <mat-label>Address *</mat-label>
+                                <textarea rows="7" cols="40" matInput formControlName="address"
+                                    placeholder="Address..."></textarea>
+                                <mat-error
+                                    *ngIf="a.address.errors && (a.address.touched || a.address.dirty || submitted)">
+                                    <span *ngIf="a.address.errors.required">required</span>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div class="container-fluid bottom-strip">
+                        <div class="row pull-right action-container">
+                            <button mat-button matStepperPrevious class="cm-btn">Back</button>
+                            <button class="fancy-btn" mat-raised-button matStepperNext (click)="onUserSubmit()"
+                                [disabled]="personalDetailsFormGroup.status == 'INVALID' || addressDetailsFormGroup.status == 'INVALID' ">Save</button>
+                        </div>
+                    </div>
+                </form>
+            </mat-step>
+        </mat-horizontal-stepper>
+    </mat-card-content>
+</mat-card>

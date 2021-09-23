@@ -1,0 +1,26 @@
+{
+    "/login": {
+        "target": "http://52.66.144.197:31000/",
+        "secure": false,
+        "logLevel": "debug",
+        "changeOrigin": true
+    },
+    "/query": {
+        "target": "http://10.109.128.30:8086/",
+        "secure": false,
+        "logLevel": "debug",
+        "changeOrigin": true
+    },
+    "/api/*": {
+        "target": "http://52.66.144.197:31000/",
+        "secure": false,
+        "logLevel": "debug",
+        "changeOrigin": true
+    },
+    "/api/admin/*": {
+        "target": "http://52.66.144.197:31000/",
+        "secure": false,
+        "logLevel": "debug",
+        "changeOrigin": true
+    }
+}

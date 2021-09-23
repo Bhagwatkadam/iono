@@ -1,0 +1,98 @@
+.add-nodes {
+    padding-top: 25px;
+}
+
+.add-nodes button {
+    width: 100%;
+    padding: 6px 0px;
+    text-transform: uppercase;
+    background: #FFFFFF;
+    border: 1px solid #01A0E1;
+    box-sizing: border-box;
+    color: #01A0E1;
+    border-radius: 4px;
+    font-family: Roboto-Medium;
+}
+
+.Add {
+    padding-top: 25px;
+}
+
+.Add button {
+    width: 46%;
+    padding: 6px 0px;
+    text-transform: uppercase;
+    background: #01A0E1;
+    color: #ffffff;
+    font-family: Roboto-Medium;
+    border: 1px solid #01A0E1;
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+
+.addMore {
+    cursor: pointer;
+}
+
+.addMore i {
+    background-color: #cccccc;
+    padding: 7px 8px;
+    border-radius: 44px;
+    margin-right: 6px;
+}
+
+.addMore span {
+    text-transform: uppercase;
+    font-family: Roboto-Bold;
+    font-size: 14px;
+}
+
+.overflow-sty {
+    overflow-y: scroll;
+    height: 280px;
+    display: block;
+}
+
+.remove {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.node-info label {
+    text-transform: capitalize;
+    width: 40%;
+    float: left;
+}
+
+.node-info b {
+    width: 10%;
+    float: left;
+}
+
+.node-info p {
+    width: 50%;
+    float: left;
+}
+
+.nodeInformation {
+    cursor: pointer;
+}
+
+.nodeMdlCnt {
+    border-radius: 10px;
+    box-shadow: 0px 0px 2px 2px #2196f357;
+}
+
+.nodeView thead {
+    background-color: #2196F3;
+    color: #ffffff;
+}
+
+.Nmodel {
+    padding: 8px 10px;
+    background-color: #ffffffde;
+    border-radius: 10px;
+}
+.thw{
+    width: 3rem
+}

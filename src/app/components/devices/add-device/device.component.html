@@ -1,0 +1,54 @@
+<mat-card class="global-font main-box p0">
+    <div class="bg-standard-header">
+        <div class="ml-mr24">
+            <mat-icon routerLink="/all-devices-list" class="mat-link">arrow_back</mat-icon>
+        </div>
+        <div class="card-title global-font">New Device</div>
+    </div>
+    <mat-card-content>
+        <form [formGroup]="deviceForm">
+            <div class="form-box">
+                <div class="row">
+                    <div class="col-sm-6 mt-2">
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>Device Id</mat-label>
+                            <input matInput type="text" placeholder="Device id" formControlName="deviceId">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-6 mt-2">
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>Name *</mat-label>
+                            <input matInput placeholder="Name" formControlName="name"
+                                [ngClass]="{'is-invalid': f.name.errors && (f.name.touched || f.name.dirty)}">
+                            <mat-error *ngIf="f.name.errors && (f.name.touched || f.name.dirty)">
+                                <span *ngIf="f.name.errors.required">Device name is required</span>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-6 mt-2">
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>Type *</mat-label>
+                            <input matInput placeholder="Type" formControlName="type" [matAutocomplete]="auto" (keyup)="filterLabels($event.target.value)"
+                                [ngClass]="{'is-invalid': f.type.errors && (f.type.touched || f.type.dirty)}">
+                            <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                                <mat-option *ngFor="let option of filteredOptions" [value]="option">
+                                    {{option}}
+                                </mat-option>
+                            </mat-autocomplete>
+                            <mat-error *ngIf="f.type.errors && (f.type.touched || f.type.dirty)">
+                                <span *ngIf="f.type.errors.required">Device type is required</span>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+            <div class="form-button-strip">
+                <div class="text-right">
+                    <button class="form-cancel mr-2" mat-button routerLink="/all-devices-list">Cancel</button>
+                    <button class="fancy-btn" type="button" (click)="saveDevice()"
+                        [disabled]="deviceForm.status === 'INVALID'" mat-raised-button>Save</button>
+                </div>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>

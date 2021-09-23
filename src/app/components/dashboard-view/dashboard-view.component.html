@@ -1,0 +1,88 @@
+<router-outlet (activate)="onActivate($event)"></router-outlet>
+<section class="dashboard-graphs">
+    <div class="container-fluid">
+        <div class="graphs-child">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="graphs-view">
+                        <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels"
+                            [options]="barChartOptions" [plugins]="barChartPlugins" [legend]="barChartLegend"
+                            [chartType]="barChartType">
+                        </canvas>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="graphs-view">
+                        <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"
+                            [options]="pieChartOptions" [plugins]="pieChartPlugins" [legend]="pieChartLegend">
+                        </canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="mapouter graphs-view">
+                        <div class="gmap_canvas"><iframe id="gmap_canvas"
+                                src="https://maps.google.com/maps?q=hyderabad&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                                frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="list-table graphs-view">
+                        <div class="table-responsive box-shadow">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Location</th>
+                                        <th>Active</th>
+                                        <th>Inactive</th>
+                                        <th>Progress</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Hyderabad</td>
+                                        <td>200</td>
+                                        <td>20</td>
+                                        <td>35</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Chennai</td>
+                                        <td>500</td>
+                                        <td>10</td>
+                                        <td>55</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Delhi</td>
+                                        <td>600</td>
+                                        <td>60</td>
+                                        <td>15</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Mumbai</td>
+                                        <td>400</td>
+                                        <td>20</td>
+                                        <td>85</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Andra</td>
+                                        <td>700</td>
+                                        <td>68</td>
+                                        <td>35</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Orissa</td>
+                                        <td>630</td>
+                                        <td>70</td>
+                                        <td>85</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

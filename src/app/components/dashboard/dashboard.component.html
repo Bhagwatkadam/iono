@@ -1,0 +1,260 @@
+<div class="dashboard">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6">
+                <mat-card class="card pad-0">
+                    <div class="header">
+                        <div class="month">
+                            <div class="head-text global-font">
+                                Devices
+                            </div>
+                            <div class="pull-right month-dropdown">
+                                <div class="form-group">
+                                    <select class="form-control">
+                                        <option>This Month</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="img">
+                        <img class="img-chart" src="assets/images/group-23.png" alt="">
+                    </div>
+                    <div class="container-fluid pad-0 mt50">
+                        <div class="row">
+                            <div class="col-sm-4 text-center pad-0 global-font">
+                                <p class="mini-title color-total">Total</p>
+                                <p class="num-tag">480</p>
+                            </div>
+                            <div class="col-sm-4 text-center pad-0 global-font">
+                                <p class="mini-title progress">Total in progress</p>
+                                <p class="num-tag">310</p>
+                            </div>
+                            <div class="col-sm-4 text-center pad-0 global-font">
+                                <p class="mini-title inactive">Inactive</p>
+                                <p class="num-tag">170</p>
+                            </div>
+                        </div>
+                    </div>
+                </mat-card>
+            </div>
+            <div class="col-sm-6">
+                <mat-card class="card pad-0">
+                    <div class="header">
+                        <div class="header-box">
+                            <div class="head-text global-font">
+                                Inventory
+                            </div>
+                            <div class="pull-right month-dropdown">
+                                <div class="form-group">
+                                    <select class="form-control">
+                                        <option>Current week</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="img-1">
+                        <img src="assets/images/group-9.png" alt="">
+                    </div>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6">
+                <mat-card class="device-spec-list-card pad-0">
+                    <div class="header">
+                        <div class="header-box">
+                            <div class="head-text global-font">
+                                City wise scan list (recent)
+                            </div>
+                            <div class="pull-right month-dropdown">
+                                <div class="form-group">
+                                    <select class="form-control">
+                                        <option>Current Year</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-3">
+                        <div class="table-responsive">
+                            <table class="table table-striped global-font">
+                                <thead>
+                                    <tr>
+                                        <th class="w-75 text-center">S.no</th>
+                                        <th>Location</th>
+                                        <th>Active</th>
+                                        <th>In progress</th>
+                                        <th>Inactive</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="w-75 text-center">1</td>
+                                        <td> Hyderabad </td>
+                                        <td> 1200 </td>
+                                        <td> 1100 </td>
+                                        <td> 150 </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="w-75 text-center">2</td>
+                                        <td> Delhi </td>
+                                        <td> 1400 </td>
+                                        <td> 1000 </td>
+                                        <td> 350 </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="w-75 text-center">3</td>
+                                        <td> Odissa </td>
+                                        <td> 1300 </td>
+                                        <td> 900 </td>
+                                        <td> 850 </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="w-75 text-center">4</td>
+                                        <td> Mumbai </td>
+                                        <td> 1200 </td>
+                                        <td> 1100 </td>
+                                        <td> 150 </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="w-75 text-center">5</td>
+                                        <td> Banglore </td>
+                                        <td> 900 </td>
+                                        <td> 1000 </td>
+                                        <td> 100 </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="w-75 text-center">6</td>
+                                        <td> Chennai </td>
+                                        <td> 1500 </td>
+                                        <td> 1200 </td>
+                                        <td> 300 </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </mat-card>
+            </div>
+            <div class="col-sm-6">
+                <mat-card class="device-run-list-card pad-0">
+                    <div class="header">
+                        <div class="header-box">
+                            <div class="head-text global-font">
+                                Recently Added Device Specifications List
+                            </div>
+                            <div class="pull-right month-dropdown">
+                                <div class="form-group">
+                                    <button class="f-btn" routerLink="/device-type-list"> <span
+                                            class="f-btn-text global-font">View All</span> </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-data">
+                        <div class="table-responsive">
+                            <table class="table table-striped global-font">
+                                <thead>
+                                    <th class="w-75 text-center">S no</th>
+                                    <th class="text-left">Device Type</th>
+                                    <th class="text-left">No Of Parameters</th>
+                                </thead>
+                                <tbody class="bg-white">
+                                    <tr *ngFor="let d of deviceTypes;let i = index">
+                                        <td class="w-75 text-center">{{ d.sNo }}</td>
+                                        <td class="text-left"> {{ d.name }} </td>
+                                        <td class="text-left"> {{ d.numberOfParams }} </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6">
+                <mat-card class="device-run-list-card pad-0">
+                    <div class="header">
+                        <div class="header-box">
+                            <div class="head-text global-font">
+                                Recently Discovery Scan List
+                            </div>
+                            <div class="pull-right month-dropdown">
+                                <div class="form-group">
+                                    <button class="f-btn" routerLink="/discovery-scan-list"> <span
+                                            class="f-btn-text global-font">View All</span> </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-data">
+                        <div class="table-responsive">
+                            <table class="table table-striped global-font">
+                                <thead>
+                                    <tr>
+                                        <th class="w-75 text-center">S.No</th>
+                                        <th class="w-75">Scan ID</th>
+                                        <th class="text-left">Cartridge Name</th>
+                                        <th class="text-left">No Of Devices</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let d of discoveryList;let i = index">
+                                        <td class="w-75 text-center"> {{ i+1 }} </td>
+                                        <td class="w-75 text-left"> {{ d.id }} </td>
+                                        <td class="text-left"> {{ d.cartridgeName }} </td>
+                                        <td class="text-left"> {{ d.noOfDevice }} </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </mat-card>
+            </div>
+            <div class="col-sm-6">
+                <mat-card class="device-spec-list-card pad-0">
+                    <div class="header">
+                        <div class="header-box">
+                            <div class="head-text global-font">
+                                Recently Added Cartridges List
+                            </div>
+                            <div class="pull-right month-dropdown">
+                                <div class="form-group">
+                                    <button routerLink="/cartridge-list" class="f-btn"> <span
+                                            class="f-btn-text global-font">View All</span> </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p15">
+                        <div class="table-responsive">
+                            <table class="table table-striped global-font">
+                                <thead>
+                                    <tr>
+                                        <th class="w-75 text-center">S.no</th>
+                                        <th class="w-150 text-left">Cartridge Name</th>
+                                        <th class="text-left pl-2">Added Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let d of cartridgeList;let i = index">
+                                        <td class="w-75 text-center"> {{ i+1 }} </td>
+                                        <td class="w-200 text-left"> {{ d.name }} </td>
+                                        <td class="text-left"> {{ d.created_on | date }} </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</div>

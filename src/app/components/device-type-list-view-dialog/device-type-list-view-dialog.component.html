@@ -1,0 +1,34 @@
+<div class="container-fluid">
+  <span class="pull-right">
+    <mat-icon (click)="close()">close</mat-icon>
+  </span>
+
+  <div class="row text-center header-text">
+    {{ data.name }}
+  </div>
+
+  <div class="row">
+    <div class="table-responsive">
+      <table class="table table-striped text-center">
+        <thead>
+          <tr>
+            <th>Application Label</th>
+            <th>Device Label</th>
+            <th>Value Type</th>
+            <th>Static / Dynamic</th>
+            <th>Is A Filter</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let l of Labels">
+            <td>{{ l.ui_label }}</td>
+            <td>{{ l.device_label }}</td>
+            <td>{{ l.value_type_name }}</td>
+            <td>{{ l.is_static_or_dynamic }}</td>
+            <td>{{ l.is_filter }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

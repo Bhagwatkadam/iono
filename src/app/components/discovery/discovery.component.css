@@ -1,0 +1,57 @@
+.card{
+    margin: 20px 20px;
+    padding:0;
+    box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.16);
+    border: solid 1px #c7c7c7;
+}
+.bg-standard{
+    height: 46px;
+    background-color: #006cd9;
+    display: flex;
+    align-items: center;
+}
+.card-title{
+    font-size: 18px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 0.11px;
+  color: #f7f8f9;
+}
+.sub-head{
+  font-size: 21px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 0.7px;
+  color: #131415;
+}
+mat-icon:hover{
+    cursor: pointer;
+}
+mat-form-field.main-field-width{
+    width: 300px !important;
+    height:56px !important;
+}
+mat-form-field.field-width{
+    width: 100% !important;
+    height:56px !important;
+}
+.bottom-strip{
+  height: 79px;
+  background-color: #f6f6f6;
+}
+
+.cm-btn{
+    width: 150px;
+    height: 48px;
+    border-radius: 4px;
+}
+.discovery-form {
+    margin : 0 30px
+}
+.cartridge-box {
+    margin: 20px 0px;
+}

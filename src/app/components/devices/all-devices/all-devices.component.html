@@ -1,0 +1,127 @@
+<section class="global-font main-box">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="head-strip">
+                <div class="head-text global-font">
+                    All Devices
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid search-box">
+        <div class="row flex">
+            <div>
+                <div class="flex">
+                    <div class="right-inner-addon input-container">
+                        <i class="fa fa-search"></i>
+                        <input type="text" class="search-global" (keyup)="applyFilter($event.target.value)"
+                            placeholder="Search" />
+                    </div>
+                </div>
+            </div>
+            <div class="pull-right ml-auto">
+                <button class="add-btn" mat-mini-fab mat-raised-button routerLink="/device" color="primary"
+                    aria-label="Add New Device" title="Add New Device">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid moble-table-responsive">
+        <div class="row">
+            <div class="table-responsive box-shadow">
+                <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 device-table"
+                    multiTemplateDataRows>
+                    <!-- Device Id Column class="color"-->
+                    <ng-container matColumnDef="deviceId">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> <span class="tab-head-text"> Device ID
+                            </span> </th>
+                        <td mat-cell class="color" *matCellDef="let element" (click)="getRowValue(element)">
+                            <span class="mobile-label">Device ID:</span> {{ element.deviceId }}
+                        </td>
+                    </ng-container>
+
+                    <!-- Scan Id Column -->
+                    <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> <span class="tab-head-text"> Name </span>
+                        </th>
+                        <td mat-cell *matCellDef="let element">
+                            <span class="mobile-label">Name:</span>
+                            {{element.deviceName}}
+                        </td>
+                    </ng-container>
+
+                    <!-- Vendor Column -->
+                    <ng-container matColumnDef="type">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> <span class="tab-head-text"> Type</span>
+                        </th>
+                        <td mat-cell *matCellDef="let element">
+                            <span class="mobile-label"> Type:</span>
+                            {{element.deviceType}}
+                        </td>
+                    </ng-container>
+
+                    <!-- Version Column -->
+                    <ng-container matColumnDef="timestamp">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> <span class="tab-head-text">
+                                Created On </span> </th>
+                        <td mat-cell *matCellDef="let element">
+                            <span class="mobile-label">Created On:</span>
+                            {{element.timestamp | date:'medium'}}
+                        </td>
+                    </ng-container>
+                    <!-- Action Column -->
+                    <ng-container matColumnDef="action">
+                        <th mat-header-cell *matHeaderCellDef> <span class="tab-head-text"></span> </th>
+                        <td mat-cell *matCellDef="let row text-right">
+                            <span class="mobile-label"></span>
+                            <button mat-icon-button class="send-menu" (click)="onSelectedItem(row)"
+                                [matMenuTriggerFor]="sendMenu">
+                                <mat-icon>more_vert</mat-icon>
+                            </button>
+                        </td>
+                    </ng-container>
+                    <!-- Template for details row -->
+                     <ng-container matColumnDef="expandedDetail">
+                        <td class="white" mat-cell *matCellDef="let element"
+                            [attr.colspan]="displayedColumns.length">
+                            <div class="row student-element-detail child-table-box"
+                                [@detailExpand]="element.isExpanded ? 'expanded' : 'collapsed'">
+                                <table class="table table-striped text-center mt-1">
+                                    <thead class="t-head mat-header-row">
+                                        <tr>
+                                            <th>Command End Point</th>
+                                            <th>Data End Point</th>
+                                            <th>Created On</th>
+                                        </tr>
+                                    </thead>
+                                     <tbody>
+                                        <tr *ngFor="let d of element.resources">
+                                            <ng-container>
+                                                <td> <span class="mobile-label">Command End Point:</span> {{ d.mqttCommandEndpoint }}</td>
+                                                <td> <span class="mobile-label">Data End Point:</span>{{ d.mqttDataEndpoint }}</td>
+                                                <td> <span class="mobile-label">Created On:</span>{{ d.createdOn | date:'medium' }}</td>
+                                            </ng-container>
+                                        </tr>
+                                    </tbody> 
+                                </table>
+                            </div>
+                        </td>
+                    </ng-container> 
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="student-element-row"
+                        [class.student-expanded-row]="row.isExpanded"></tr>
+                     <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="student-detail-row"
+                        [class.expanded-row]="row.isExpanded"></tr> 
+                </table>
+            </div>
+            <mat-paginator [pageSizeOptions]="[10, 20]" showFirstLastButtons></mat-paginator>
+        </div>
+    </div>
+</section>
+<mat-menu #sendMenu="matMenu">
+    <!-- <button mat-menu-item (click)="viewDevice()">View</button> -->
+    <button mat-menu-item (click)="editDevice()">Edit</button>
+    <button mat-menu-item (click)="deleteDevice()">Delete</button>
+</mat-menu>

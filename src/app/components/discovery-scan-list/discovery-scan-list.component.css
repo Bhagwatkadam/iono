@@ -1,0 +1,63 @@
+.head-strip{
+  height: 46px;
+  background-color: #006cd9;
+}
+.head-text{
+  padding: 10px 10px;
+  font-size: 18px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 0.11px;
+  color: #f7f8f9;
+}
+
+table{ 
+    width: 100%;
+}
+.mat-row:nth-child(even){
+    background-color: #f5f5f5;
+}
+.tab-head-text{
+font-size: 18px;
+text-transform: none;
+font-weight: bold;
+font-stretch: normal;
+font-style: normal;
+line-height: normal;
+letter-spacing: 0.11px;
+color: #0c1225;
+}
+.w-75{
+width: 75px !important;
+}
+
+.right-inner-addon {
+position: relative;
+}
+.right-inner-addon input {
+padding-right: 35px !important;
+}
+.right-inner-addon i {
+position: absolute;
+right: 0px;
+top: 5px;
+padding: 12px 12px;
+pointer-events: none;
+}
+td.blue{
+  color: #006cd9;
+  cursor: pointer;
+}
+.mat-icon{
+  cursor: pointer;
+}
+.run-btn{
+  background:orange;
+  color: white;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  padding: 2px 7px;
+}

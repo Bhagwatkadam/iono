@@ -1,0 +1,91 @@
+<section class="login">
+    <div class="row">
+        <div class="col-sm-6 bg-fancy">
+            <div class="left-cnt">
+                <figure>
+                    <img class="log-img" src="../../../assets/images/login.png" alt="">
+                </figure>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="login-details signup">
+                <p class="sign-in global-font">Sign Up</p>
+                <form class="example-form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                    <div class="mt-2 mb-2">
+                        <mat-form-field appearance="outline" class="example-full-width">
+                            <mat-label>Org. Name</mat-label>
+                            <span matPrefix> <img class="input-logo user-icons" src="assets/images/org.png" alt="">
+                            </span>
+                            <input matInput placeholder="Organization Name" autocomplete="off"
+                                formControlName="organization"
+                                [ngClass]="{ 'is-invalid': f.organization.errors && (f.organization.touched || f.organization.dirty || submitted)}">
+                            <mat-error *ngIf="f.organization.errors && (f.organization.touched || f.organization.dirty || submitted)">
+                                <span *ngIf="f?.organization?.errors?.required"> Organization is required </span>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="mt-2 mb-2 mt-4">
+                        <mat-form-field appearance="outline" class="example-full-width">
+                            <mat-label>Name</mat-label>
+                            <span matPrefix> <img class="input-logo user-icons" src="assets/images/user-icon.png" alt="">
+                            </span>
+                            <input matInput placeholder="Name" autocomplete="off"
+                                formControlName="name"
+                                [ngClass]="{ 'is-invalid': f.name.errors && (f.name.touched || f.name.dirty || submitted)}">
+                            <mat-error *ngIf="f.name.errors && (f.name.touched || f.name.dirty || submitted)">
+                                <span *ngIf="f?.name?.errors?.required"> Organization is required </span>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="mt-2 mb-2 mt-4">
+                        <mat-form-field appearance="outline" class="example-full-width">
+                            <mat-label>Email ID</mat-label>
+                            <span matPrefix> <img class="input-logo" src="assets/images/icon-email.png" alt="">
+                            </span>
+                            <input matInput placeholder="E-mail Address" autocomplete="off" formControlName="email"
+                                [ngClass]="{ 'is-invalid': f.email.errors && (f.email.touched || f.email.dirty || submitted)}">
+                            <mat-error *ngIf="f.email.errors && (f.email.touched || f.email.dirty || submitted)">
+                                <span *ngIf="f?.email?.errors?.required"> Email is required </span>
+                                <span *ngIf="f?.email?.errors?.email"> Email must be a valid email address
+                                </span>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="mt-2 mb-2 mt-4">
+                        <mat-form-field appearance="outline" class="example-full-width">
+                            <mat-label>User Name </mat-label>
+                            <span matPrefix> <img class="input-logo user-icons login-user" src="assets/images/login-user.png" alt="">
+                            </span>
+                            <input matInput placeholder="Login User Name" autocomplete="off" formControlName="login"
+                                [ngClass]="{ 'is-invalid': f.login.errors && (f.login.touched || f.login.dirty || submitted)}">
+                            <mat-error *ngIf="f.login.errors && (f.login.touched || f.login.dirty || submitted)">
+                                <span *ngIf="f?.login?.errors?.required"> User login is required </span>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="mt-3 mb-2 mt-4">
+                        <mat-form-field appearance="outline" class="example-full-width">
+                            <mat-label>Password</mat-label>
+                            <span matPrefix> <img class="input-logo" src="assets/images/icon-password.png" alt="">
+                            </span>
+                            <input matInput type="password" id="password" name="password" autocomplete="off"
+                                placeholder="Your Password" formControlName="password"
+                                [ngClass]="{ 'is-invalid': f.password.errors && (f.password.touched || f.password.dirty || submitted)}">
+                            <mat-error
+                                *ngIf="f.password.errors && (f.password.touched || f.password.dirty || submitted)">
+                                <span *ngIf="f?.password?.errors?.required"> Password is required </span>
+                                <span *ngIf="f?.password?.errors?.minlength"> Password must be atleast 8
+                                    characters </span>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="login-btn">
+                        <button mat-raised-button type="submit">Sign up</button>
+                    </div>
+                    <a class="fp-text global-font login-link" routerLink="/client-login">Back to Sign-in</a>
+                    <!-- <a (click)="bdc()">bdc()</a> -->
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

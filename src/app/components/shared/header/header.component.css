@@ -1,0 +1,215 @@
+#custom-bootstrap-menu{
+    z-index: 40;
+}
+#custom-bootstrap-menu.navbar-default .navbar-brand {
+    color: rgba(119, 119, 119, 1);
+}
+
+#custom-bootstrap-menu.navbar-default {
+    font-size: 14px;
+    border-bottom-width: 1px;
+    border: none;
+    height: 60px;
+    background-color: white;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+}
+
+#custom-bootstrap-menu.navbar-default .navbar-nav>li>a {
+    color: rgba(119, 119, 119, 1);
+    background-color: rgba(248, 248, 248, 0);
+}
+
+#custom-bootstrap-menu.navbar-default .navbar-nav>li>a:hover,
+#custom-bootstrap-menu.navbar-default .navbar-nav>li>a:focus {
+    color: rgba(51, 51, 51, 1);
+    background-color: rgba(248, 248, 248, 0);
+}
+
+#custom-bootstrap-menu.navbar-default .navbar-nav>.active>a,
+#custom-bootstrap-menu.navbar-default .navbar-nav>.active>a:hover,
+#custom-bootstrap-menu.navbar-default .navbar-nav>.active>a:focus {
+    color: rgba(85, 85, 85, 1);
+    background-color: rgba(231, 231, 231, 1);
+}
+
+#custom-bootstrap-menu.navbar-default .navbar-toggle {
+    border-color: #ddd;
+}
+
+#custom-bootstrap-menu.navbar-default .navbar-toggle:hover,
+#custom-bootstrap-menu.navbar-default .navbar-toggle:focus {
+    background-color: #ddd;
+}
+
+#custom-bootstrap-menu.navbar-default .navbar-toggle .icon-bar {
+    background-color: #888;
+}
+
+#custom-bootstrap-menu.navbar-default .navbar-toggle:hover .icon-bar,
+#custom-bootstrap-menu.navbar-default .navbar-toggle:focus .icon-bar {
+    background-color: #888;
+}
+#custom-bootstrap-menu{
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+  border-style: solid;
+  border-width: 1px;
+  border-image-source: linear-gradient(to bottom, rgba(217, 217, 217, 0.5), #dbdbdb);
+  border-image-slice: 1;
+  background-color: var(--white-two);
+}
+
+.nav li {
+    cursor: pointer;
+}
+
+.navbar-header {
+    display: flex;
+}
+
+
+.welcom{
+    padding-top: 16px;
+    margin-left: 12px;
+    font-size: 1.5rem;
+}
+
+.menu-icons i {
+    font-size: 24px;
+    padding-top: 6px;
+}
+
+.menu-icons span {
+    background-color: #F44336;
+    color: #ffffff;
+    padding: 0px 6px;
+    border-radius: 10px;
+    position: absolute;
+    left: 28px;
+    top: 16px;
+    font-size: 12px;
+}
+
+.navbar-nav li {
+    text-transform: capitalize;
+    font-size: 16px;
+}
+
+.user-name {
+    padding-top: 22px !important;
+    text-transform: capitalize;
+}
+
+.dropdown-menu {
+    margin-right: 10px;
+    margin-top: 10px;
+    padding: 0px;
+    border-radius: 4px;
+}
+
+.dropdown-menu a {
+    cursor: pointer;
+    font-family: Roboto-Regular;
+    padding: 10px 10px;
+}
+
+.dropdown-menu li {
+    font-family: Raleway-Medium;
+}
+
+.dropdown-menu li:hover {
+    background-color: #20ace3;
+}
+
+.profile {
+    border-bottom: 1px solid #cccccc;
+}
+
+.dropdown-menu>li>a:focus,
+.dropdown-menu>li>a:hover {
+    color: #ffffff;
+    text-decoration: none;
+    background-color: #20ace3;
+}
+
+.loginname img {
+    height: 50px;
+    width: 50px;
+    border-radius: 100px;
+}
+
+.pRight {
+    padding-right: 10px;
+}
+.fa-bell{
+    color: blue;
+}
+
+
+.right-inner-addon {
+    position: relative;
+  }
+  .right-inner-addon input {
+    padding-right: 35px !important;
+  }
+  .right-inner-addon i {
+    position: absolute;
+    right: 0px;
+    top: 5px;
+    padding: 12px 12px;
+    pointer-events: none;
+  }
+.search-nav-global {
+    width: 900px;
+    height: 48px;
+    padding: 12px 16px 12px 17px;
+    border-radius: 2px;
+    border: none;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.24), 0 0 2px 0 rgba(0, 0, 0, 0.12);
+    background: #eee;
+}
+
+.user-icon{
+    margin-right: 20px;
+    margin-left:30px;
+    margin-top: 5px;
+}
+.header-logo{
+    max-width: 180px;
+    margin-top: 6px;
+}
+.navbar-toggle{
+    border: none;
+    margin-right: 7px;
+    margin-left: -12px;
+    background: none !important;
+}
+.collapse.navbar-collapse{
+    display: block !important;
+}
+
+.navbar-right {
+    float: right !important;
+    margin-right: -15px;
+}
+.navbar-nav > li {
+    float: left;
+}
+
+@media all and (max-width: 768px) {
+    .user-icon{
+        margin-right: 0px;
+        margin-left: 6px;
+        margin-top: 0px;
+    }
+    .header-logo {
+        margin-top: 10px;
+        height: 30px;
+    }
+    .loginname img{
+        height: 40px;
+        width: 40px;
+    }
+    .navbar-nav > li > a {
+        padding-top: 0px;
+    }
+}

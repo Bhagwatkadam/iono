@@ -1,0 +1,15 @@
+.user-icons {
+    opacity: 0.6;
+}
+.sign-in{
+    margin-top: 10px;
+}
+.login-user{
+    width: 30px !important;
+    height: 30px !important;
+    margin-left: -2px;
+    margin-right: 5px !important;
+}
+.login-link{
+    font-size: 12px;
+}

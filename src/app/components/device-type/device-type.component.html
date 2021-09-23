@@ -1,0 +1,200 @@
+<router-outlet (activate)="onActivate($event)"></router-outlet>
+<mat-card class="card global-font">
+  <div class="bg-standard">
+    <div class="ml-mr24">
+      <mat-icon routerLink="/device-type-list" class="mat-link">arrow_back</mat-icon>
+    </div>
+    <div class="card-title global-font">New Device Specification</div>
+  </div>
+  <mat-card-content>
+    <div class="container-fluid pad-0">
+      <form [formGroup]="deviceTypeForm">
+        <div class="row d-type">
+          <div class="col-sm">
+            <mat-form-field appearance="outline">
+              <mat-label>Device Type *</mat-label>
+              <input matInput type="text" name="name" id="name" placeholder="Enter device type name"
+                formControlName="name"
+                [ngClass]="{'is-invalid': f.name.errors && (f.name.touched || f.name.dirty || submitted)}"
+                (keypress)="spaceNotAllowed($event)">
+              <mat-icon matSuffix matTooltip="Instead of white space use _ or -">help_outline</mat-icon>
+              <mat-error *ngIf="f.name.errors?.required">Device Type is required</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row para">
+          <span class="sub-head">Parameters </span>
+          <div class="col-sm-12 para-head">
+            <div formArrayName="parameters" *ngFor="let item of parameters.controls; let i = index;">
+              <div class="col-sm-12 padding0 remove-para" [formGroupName]='i'
+                >
+                <div class="row">
+                  <div class="col-sm-4 col-sm-offset-8 text-right">
+                    <div class="remove padding0" *ngIf="parameters.length !== 1">
+                      <mat-icon (click)="removeParameter(i)" tooltip="Remove">close</mat-icon>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-4">
+                    <mat-form-field class="param-field" appearance="outline">
+                      <mat-label>Device Label *</mat-label>
+                      <input matInput type="text" name="{{deviceLabel+i}}" id="{{deviceLabel+i}}"
+                        placeholder="Device label name" formControlName="deviceLabel"
+                        [ngClass]="{'is-invalid':item.get('deviceLabel').errors && (item.get('deviceLabel').touched || item.get('deviceLabel').dirty || submitted)}">
+                      <mat-error
+                        *ngIf="item.get('deviceLabel').errors && (item.get('deviceLabel').touched || item.get('deviceLabel').dirty || submitted)">
+                        <span *ngIf="item.get('deviceLabel').errors.required">Device lable is required</span>
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-sm-4">
+                    <mat-form-field class="param-field" appearance="outline">
+                      <mat-label>Application Label *</mat-label>
+                      <input matInput type="text" type="text" name="{{uiLabel+i}}" id="{{uiLabel+i}}"
+                        (keyup)="filterLabels($event.target.value)" (ngModelChange)="onTypeSelect($event)"
+                        (focus)="onFocus(i)" placeholder="Application label" formControlName="uiLabel"
+                        [matAutocomplete]="auto" [ngClass]="{'is-invalid':item.get('uiLabel').errors
+                         && (item.get('uiLabel').touched ||
+                          item.get('uiLabel').dirty ||
+                           submitted)}" field="name">
+                      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectedclient($event)"
+                        [displayWith]="getOptionText">
+                        <mat-option *ngFor="let option of filteredOptions" [value]="option">
+                          {{option.name}}
+                        </mat-option>
+                      </mat-autocomplete>
+                      <mat-error
+                        *ngIf="item.get('uiLabel').errors && (item.get('uiLabel').touched || item.get('uiLabel').dirty || submitted)">
+                        <span *ngIf="item.get('uiLabel').errors.required">Application label is required</span>
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-sm-4">
+                    <mat-form-field class="param-field" appearance="outline">
+                      <mat-label>Value Type *</mat-label>
+                      <mat-select id="{{valueType+i}}" formControlName="valueType"
+                        [ngClass]="{'is-invalid':item.get('valueType').errors && (item.get('valueType').touched || item.get('valueType').dirty || submitted)}">
+                        <mat-option *ngFor="let type of paramValueTypes" [value]="type.id">
+                          {{type.name}}
+                        </mat-option>
+                      </mat-select>
+                      <mat-error
+                        *ngIf="item.get('valueType').errors && (item.get('valueType').touched || item.get('valueType').dirty || submitted)">
+                        <span *ngIf="item.get('valueType').errors.required"> Value Type is required</span>
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-sm-4">
+                    <mat-form-field class="param-field" appearance="outline">
+                      <mat-label>Static / Dynamic *</mat-label>
+                      <mat-select id="{{isStaticOrDynamic+i}}" formControlName="isStaticOrDynamic"
+                        [ngClass]="{'is-invalid':item.get('isStaticOrDynamic').errors && (item.get('isStaticOrDynamic').touched || item.get('isStaticOrDynamic').dirty || submitted)}">
+                        <mat-option value="" disabled>Static/Dynamic</mat-option>
+                        <mat-option value="static">Static</mat-option>
+                        <mat-option value="dynamic">Dynamic</mat-option>
+                      </mat-select>
+                      <mat-error
+                        *ngIf="item.get('isStaticOrDynamic').errors && (item.get('isStaticOrDynamic').touched || item.get('isStaticOrDynamic').dirty || submitted)">
+                        <span *ngIf="item.get('isStaticOrDynamic').errors.required"> Select static or dynamic</span>
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-sm-4" *ngIf="item.controls.isFilter.value">
+                    <mat-form-field class="param-field" appearance="outline">
+                      <mat-label>Min Value </mat-label>
+                      <input matInput type="text" name="{{minValue+i}}" id="{{minValue+i}}" placeholder="minValue"
+                        formControlName="minValue"
+                        [ngClass]="{'is-invalid':item.get('minValue').errors && (item.get('minValue').touched || item.get('minValue').dirty || submitted)}">
+                      <mat-error
+                        *ngIf="item.get('minValue').errors && (item.get('minValue').touched || item.get('minValue').dirty || submitted)">
+                        <span *ngIf="item.get('minValue').errors.required">required</span>
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-sm-4" *ngIf="item.controls.isFilter.value">
+                    <mat-form-field class="param-field" appearance="outline">
+                      <mat-label>Max Value </mat-label>
+                      <input matInput type="text" name="{{maxValue+i}}" id="{{maxValue+i}}" placeholder="maxValue"
+                        formControlName="maxValue"
+                        [ngClass]="{'is-invalid':item.get('maxValue').errors && (item.get('maxValue').touched || item.get('maxValue').dirty || submitted)}">
+                      <mat-error
+                        *ngIf="item.get('maxValue').errors && (item.get('maxValue').touched || item.get('maxValue').dirty || submitted)">
+                        <span *ngIf="item.get('maxValue').errors.required">required</span>
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+
+                  <div class="col-sm-4 mt-3">
+                    <div class="flex">
+                      <div>
+                        <input type="checkbox" (change)="checkBox()" name="{{isFilter+i}}" id="{{isFilter+i}}"
+                          formControlName="isFilter" class="largerCheckbox">
+                      </div>
+                      <div class="mt-1">
+                        <span  class="filter">Is a filter</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="clearfix"
+                    *ngIf="item.controls.valueType.value == 1 && item.controls.isStaticOrDynamic.value == 'dynamic'">
+                  </div>
+                  <div class="col-sm-2 Vpad"
+                    *ngIf="item.controls.valueType.value == 1 && item.controls.isStaticOrDynamic.value == 'dynamic'">
+                    <div class="form-group  discoveryinputs padding0">
+                      <label>Min value <span class="text-normal"> </span></label>
+                      <input type="text" name="{{minValue+i}}" id="{{minValue+i}}" placeholder="Min value"
+                        formControlName="minValue"
+                        [ngClass]="{'is-invalid':item.get('minValue').errors && (item.get('minValue').touched || item.get('minValue').dirty || submitted)}">
+                      <div
+                        *ngIf="item.get('minValue').errors && (item.get('minValue').touched || item.get('minValue').dirty || submitted)"
+                        class="text-danger">
+                        <div *ngIf="item.get('minValue').errors.required">
+                          Min value is required
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-2 Vpad"
+                    *ngIf="item.controls.valueType.value == 1 && item.controls.isStaticOrDynamic.value == 'dynamic'">
+                    <div class="form-group  discoveryinputs padding0">
+                      <label>Max value <span class="text-normal"> </span></label>
+                      <input type="text" name="{{maxValue+i}}" id="{{maxValue+i}}" placeholder="Max value"
+                        formControlName="maxValue"
+                        [ngClass]="{'is-invalid':item.get('maxValue').errors && (item.get('maxValue').touched || item.get('maxValue').dirty || submitted)}">
+                      <div
+                        *ngIf="item.get('maxValue').errors && (item.get('maxValue').touched || item.get('maxValue').dirty || submitted)"
+                        class="text-danger">
+                        <div *ngIf="item.get('maxValue').errors.required">
+                          Max value is required
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="clearfix"
+                    *ngIf="item.controls.valueType.value != 1 || item.controls.isStaticOrDynamic.value != 'dynamic'">
+                  </div>
+                  <div class="col-sm-1 Vpad">
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4 col-sm-offset-8 text-right">
+                <div class="Shape padding0" tooltip="Add more" (click)="addParameter(i)"
+                  *ngIf="i === parameters.length-1">
+                  <i class="fas fa-plus"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container-fluid bottom-strip mt-8">
+          <div class="row pull-right mt-4">
+            <button class="cm-btn" mat-button routerLink="/device-type-list">Cancel</button>
+            <button class="fancy-btn" type="button" (click)="saveDevice()" [disabled]="parameters.invalid"
+              mat-raised-button>Save</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </mat-card-content>
+</mat-card>

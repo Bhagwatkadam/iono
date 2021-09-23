@@ -1,0 +1,107 @@
+<router-outlet (activate)="onActivate($event)"></router-outlet>
+<mat-card class="card global-font">
+    <div class="bg-standard">
+        <div class="ml-mr24">
+          <mat-icon routerLink="/discovery-scan-list" class="mat-link">arrow_back</mat-icon>
+        </div>
+        <div class="card-title global-font">Scan</div>
+    </div>
+    <mat-card-content class="discovery-form">
+        <form [formGroup]="discoveryForm">
+            <div class="container-fluid cartridge-box">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <mat-form-field appearance="outline" class="main-field-width">
+                            <mat-label>Cartridge *</mat-label>
+                            <mat-select  name="cartridgeId" id="cartridgeId" (selectionChange)="getCartridgeInfo()" formControlName="cartridgeId" [ngClass]="{'is-invalid': f.cartridgeId.errors && (f.cartridgeId.touched || f.cartridgeId.dirty || isSubmitted)}">
+                                <mat-option value="{{cartridge.id}}" *ngFor="let cartridge of cartridgeList">
+                                    {{ cartridge.name }}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="f.cartridgeId.errors && (f.cartridgeId.touched || f.cartridgeId.dirty || isSubmitted)">
+                                <span *ngIf="f.cartridgeId.errors.required">
+                                    Cartridge is required
+                                </span>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <ng-container *ngIf="activePage === 1 && !discoveryForm.get('protocol').invalid">
+
+                <div class="sub-head global-font mt-2">Connectivity</div>
+                <div class="connectivity">
+                    <div class="row mb-3">
+                        <div class="col-sm-4">
+                            <mat-form-field appearance="outline" class="field-width">
+                                <mat-label>Connectivity Protocol</mat-label>
+                                <input matInput type="text" name="protocol" disabled readonly formControlName="protocol">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div formArrayName="protocolParameters" class="col-sm-4" *ngFor="let item of protocolParametersControl.controls; let i = index;">
+                            <div [formGroupName]='i'>
+                                <mat-form-field appearance="outline" class="field-width">
+                                    <mat-label>{{protocolParametersLabels[i]}} <span *ngIf="mandatoryProtocolParams.indexOf(protocolParametersLabels[i]) >= 0">*</span> </mat-label>
+                                    <input matInput type="text" placeholder="Enter value" formControlName="value">
+                                    <mat-error *ngIf="item.get('value').errors && (item.get('value').touched || item.get('value').dirty || isSubmitted)">
+                                        <span *ngIf="item.get('value').errors.required">
+                                            {{protocolParametersLabels[i]}} is required
+                                        </span>
+                                    </mat-error>
+                                </mat-form-field>
+                                <div class="form-group">
+                                    <!-- <div class="col-sm-2 prolabel">
+                                        <label>{{protocolParametersLabels[i]}} <span class="requiredMark" *ngIf="mandatoryProtocolParams.indexOf(protocolParametersLabels[i]) >= 0">&#42;</span></label>
+
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <input type="text" name="value" placeholder="Enter value" formControlName="value" [ngClass]="{'is-invalid':item.get('value').errors && (item.get('value').touched || item.get('value').dirty || isSubmitted)}">
+                                        <div *ngIf="item.get('value').errors && (item.get('value').touched || item.get('value').dirty || isSubmitted)" class="text-danger">
+                                            <div *ngIf="item.get('value').errors.required">
+                                                {{protocolParametersLabels[i]}} is required
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                    <!-- <div class="clearfix"></div> -->
+                                    <!-- <label>{{protocolParametersLabels[i]}}</label>
+                                    <input type="text" name="value" placeholder="Enter value" formControlName="value" [ngClass]="{'is-invalid':item.get('value').errors && (item.get('value').touched || item.get('value').dirty || isSubmitted)}">
+                                    <div *ngIf="item.get('value').errors && (item.get('value').touched || item.get('value').dirty || isSubmitted)" class="text-danger">
+                                        <div *ngIf="item.get('value').errors.required">
+                                            {{protocolParametersLabels[i]}} is required
+                                        </div>
+                                    </div> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3>Filters</h3>
+
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <mat-form-field appearance="outline" class="field-width">
+                                <mat-label>Location</mat-label>
+                                <input matInput type="text" name="filterLocation" placeholder="Enter location" formControlName="filterLocation">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-sm-4">
+                            <mat-form-field appearance="outline" class="field-width">
+                                <mat-label>Name</mat-label>
+                                <input matInput type="text" name="filterName" placeholder="Enter name" formControlName="filterName">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+                </ng-container>
+            </div>
+        </form>
+    </mat-card-content>
+
+    <div class=" container-fluid bottom-strip">
+        <div class="row pull-right action-container">
+            <button class="cm-btn"mat-button routerLink="/discovery-scan-list">Cancel</button>
+            <button class="fancy-btn" mat-raised-button (click)="submitDiscoveryForm()" [disabled]="discoveryForm.status === 'INVALID' || isSubmitted">Scan</button>
+        </div>
+    </div>
+</mat-card>

@@ -1,0 +1,114 @@
+<section class="protocol">
+    <div class="container-fluid">
+        <div class="add-protocol">
+            <h4 class="heading">ADD PROTOCOL</h4>
+            <form [formGroup]="protocolForm">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>Protocol</label>
+                            <input type="text" name="name" id="name" placeholder="Enter cartridge name" formControlName="name" [ngClass]="{'is-invalid': f.name.errors && (f.name.touched || f.name.dirty )}">
+                            <div *ngIf="f.name.errors && (f.name.touched || f.name.dirty )" class="text-danger">
+                                <div *ngIf="f.name.errors.required">Protocol is required</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h4 class="heading">PARAMETERS</h4>
+                        <div formArrayName="parameters" *ngFor="let item of parameters.controls; let i = index;">
+                            <div class="col-sm-12 padding0" [formGroupName]='i'>
+                                <div class="form-group col-sm-4 discoveryinputs padding0">
+                                    <input type="text" name="value" id="{{value+i}}" placeholder="Enter value" formControlName="value" [ngClass]="{'is-invalid':item.get('value').errors && (item.get('value').touched || item.get('value').dirty )}">
+                                    <div *ngIf="item.get('value').errors && (item.get('value').touched || item.get('value').dirty )" class="text-danger">
+                                        <div *ngIf="item.get('value').errors.required">
+                                            Parameter value is required
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="addBtn col-sm-2 padding0" *ngIf="i === parameters.length-1">
+                                    <button (click)="addParameter(i)">Add </button>
+                                </div>
+                                <div class="remove col-sm-2 padding0" *ngIf="parameters.length !== 1">
+                                    <button (click)="removeParameter(i)">remove </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="protocol-table">
+            <h5>List of Protocols</h5>
+            <div class="overflow-sty">
+                <p-table [value]="protocols" dataKey="sno">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th class="thw"></th>
+                            <th pSortableColumn="sno">S.no
+                                <p-sortIcon field="sno"></p-sortIcon>
+                            </th>
+                            <th pSortableColumn="protocol">Protocol
+                                <p-sortIcon field="protocol"></p-sortIcon>
+                            </th>
+                            <th pSortableColumn="parameters">Parameters
+                                <p-sortIcon field="parameters"></p-sortIcon>
+                            </th>
+                            <th>Actions</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-protocol let-expanded="expanded">
+                        <tr>
+                            <td>
+                                <a [pRowToggler]="protocol">
+                                    <i [ngClass]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></i>
+                                </a>
+                            </td>
+                            <td>{{protocol.sno}}</td>
+                            <td>{{protocol.entityId}}</td>
+                            <td>{{protocol.version}}</td>
+                            <td class="actions"><span class="edit" (click)="edidIdentity(protocol.entityId)">edit</span><span class="delete" data-toggle="modal" data-target="#deleteIdentity" (click)="deleteId = protocol.entityId">delete</span></td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="rowexpansion" let-protocol>
+                        <tr>
+                            <td colspan="5">
+                                <div class="p-p-3">
+                                    <p-table [value]="protocol.nodes" dataKey="nodeId">
+                                        <ng-template pTemplate="header">
+                                            <tr>
+
+                                                <th pSortableColumn="nodeId">Node ID
+                                                    <p-sortIcon field="nodeId"></p-sortIcon>
+                                                </th>
+                                                <th pSortableColumn="version">Version
+                                                    <p-sortIcon field="version"></p-sortIcon>
+                                                </th>
+                                                <th pSortableColumn="type">Type
+                                                    <p-sortIcon field="type"></p-sortIcon>
+                                                </th>
+                                            </tr>
+                                        </ng-template>
+                                        <ng-template pTemplate="body" let-node>
+                                            <tr>
+                                                <td>{{node.nodeId}}</td>
+                                                <td>{{node.version}}</td>
+                                                <td>{{node.type}}</td>
+                                            </tr>
+                                        </ng-template>
+                                        <ng-template pTemplate="emptymessage">
+                                            <tr>
+                                                <td colspan="3">There are no parameters.</td>
+                                            </tr>
+                                        </ng-template>
+                                    </p-table>
+                                </div>
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+    </div>
+</section>

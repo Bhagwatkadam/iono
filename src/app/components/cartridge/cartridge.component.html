@@ -1,0 +1,152 @@
+<router-outlet (activate)="onActivate($event)"></router-outlet>
+<mat-card class="card global-font">
+    <div class="bg-standard">
+        <div class="ml-mr24">
+            <mat-icon routerLink="/cartridge-list" class="mat-link">arrow_back</mat-icon>
+        </div>
+        <div class="card-title global-font">New Cartridge</div>
+    </div>
+    <mat-card-content>
+        <div class="mt-4">
+            <mat-horizontal-stepper linear #stepper>
+                <mat-step [stepControl]="false">
+                    <form [formGroup]="cartridgeForm">
+                        <ng-template matStepLabel>Connection Details</ng-template>
+                        <div class="container-fluid connection">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <mat-form-field appearance="outline" class="field-width">
+                                        <mat-label>Cartridge Name *</mat-label>
+                                        <input matInput type="text" name="name" id="name"
+                                            placeholder="Enter cartridge name" formControlName="name"
+                                            [ngClass]="{'is-invalid': f.name.errors && (f.name.touched || f.name.dirty || submitted)}">
+                                        <mat-error
+                                            *ngIf="f.name.errors && (f.name.touched || f.name.dirty || submitted)">
+                                            <span *ngIf="f.name.errors.required">Cartridge name required</span>
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <h3>Connectivity</h3>
+                            <div class="connectivity">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <mat-form-field appearance="outline" class="field-width">
+                                            <mat-label>Protocol Type *</mat-label>
+                                            <mat-select name="protocol" id="protocol"
+                                                (selectionChange)="getProtocolParameters()" formControlName="protocol"
+                                                [ngClass]="{'is-invalid': f.protocol.errors && (f.protocol.touched || f.protocol.dirty || submitted)}">
+                                                <mat-option [value]="protocol.name" *ngFor="let protocol of protocols">
+                                                    {{ protocol.name }}
+                                                </mat-option>
+                                            </mat-select>
+
+                                            <mat-error
+                                                *ngIf="f.protocol.errors && (f.protocol.touched || f.protocol.dirty || submitted)">
+                                                <span *ngIf="f.protocol.errors.required">
+                                                    Protocal is required
+                                                </span>
+                                            </mat-error>
+
+                                        </mat-form-field>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="row" *ngIf="!cartridgeForm.get('protocol').invalid">
+                                    <div class="col-sm-4" *ngFor="let label of protocolParameters">
+                                        <mat-form-field appearance="outline" class="field-width">
+                                            <mat-label>{{ label.parameter }} <span
+                                                    *ngIf="label.is_required">&#42;</span> </mat-label>
+                                            <input disabled type="text" matInput placeholder="{{ label.parameter }}">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="container-fluid bottom-strip">
+                            <div class="row pull-right action-container">
+                                <button class="cm-btn" mat-button routerLink="/cartridge-list">Cancel</button>
+                                <button class="fancy-btn"
+                                    [disabled]="cartridgeForm.get('name').invalid || cartridgeForm.get('protocol').invalid"
+                                    mat-raised-button matStepperNext
+                                    [disabled]="cartridgeForm.status == 'INVALID'">Next</button>
+                            </div>
+                        </div>
+
+                    </form>
+                </mat-step>
+                <mat-step>
+                    <form [formGroup]="cartridgeForm">
+                        <ng-template matStepLabel>Device Resources</ng-template>
+                        <div class="container-fluid connection">
+                            <div class="row resources">
+                                <div class="col-sm-4">
+                                    <mat-form-field appearance="outline" class="field-width">
+                                        <mat-label>Device Type</mat-label>
+                                        <mat-select name="deviceType" (selectionChange)="getDeviceTypeParameters()"
+                                            id="deviceType" formControlName="deviceType"
+                                            [ngClass]="{'is-invalid': f.deviceType.errors && (f.deviceType.touched || f.deviceType.dirty || submitted)}">
+                                            <mat-option [value]="type.name" *ngFor="let type of deviceTypes">{{
+                                                type.name }}</mat-option>
+                                        </mat-select>
+                                        <mat-error
+                                            *ngIf="f.deviceType.errors && (f.deviceType.touched || f.deviceType.dirty || submitted)">
+                                            <span *ngIf="f.deviceType.errors.required">Cartridge device type is
+                                                required</span>
+                                        </mat-error>
+
+                                    </mat-form-field>
+
+                                </div>
+
+                            </div>
+
+                            <div class="row" *ngIf="!cartridgeForm.get('deviceType').invalid">
+                                <div class="col-sm-4" *ngFor="let label of deviceTypeParameters">
+                                    <mat-form-field appearance="outline" class="field-width">
+                                        <input type="text" disabled matInput placeholder="{{ label.ui_label }}">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-sm-2 text-center col-sm-offset-8">
+                                    <div class="remove-1" *ngIf="activeFormId === 2">
+                                        <button mat-button (click)="toggleActiveScreen(2)">Back </button>
+                                    </div>
+                                </div>
+                                <!-- <div class="submitBtn text-center col-sm-2 padding0" *ngIf="!isEdit">
+                                <button mat-raised-button [disabled]="cartridgeForm.status === 'INVALID' || submitted" (click)="createCatridge()">Submit</button>
+                            </div> -->
+                                <div class="col-sm-4 col-sm-offset-8 padding0" *ngIf="isEdit">
+                                    <div class="updateBtn col-sm-6">
+                                        <button mat-raised-button (click)="updateCartridge()"
+                                            [disabled]="cartridgeForm.status === 'INVALID' || submitted">Update</button>
+                                    </div>
+                                    <div class="updateBtn col-sm-6">
+                                        <button mat-raised-button type="button" (click)="clearEditCartridgeData()"
+                                            class="entityCancel">Cancel </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="container-fluid bottom-strip">
+                            <div class="row pull-right action-container">
+                                <button class="cm-btn" mat-button matStepperPrevious>Back</button>
+                                <button class="fancy-btn" mat-raised-button matStepperNext (click)="createCatridge()"
+                                    [disabled]="cartridgeForm.status === 'INVALID' || submitted">Save</button>
+                            </div>
+                        </div>
+                    </form>
+                </mat-step>
+            </mat-horizontal-stepper>
+
+        </div>
+    </mat-card-content>
+</mat-card>

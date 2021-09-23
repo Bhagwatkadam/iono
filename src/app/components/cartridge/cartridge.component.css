@@ -1,0 +1,55 @@
+.card{
+    margin: 20px 20px;
+    padding:0;
+    box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.16);
+    border: solid 1px #c7c7c7;
+}
+.bg-standard{
+    height: 46px;
+    background-color: #006cd9;
+    display: flex;
+    align-items: center;
+}
+.card-title{
+    font-size: 18px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 0.11px;
+  color: #f7f8f9;
+}
+mat-icon:hover{
+    cursor: pointer;
+}  
+mat-form-field.field-width{
+    width: 95% !important;
+}
+
+.cm-btn{
+    width: 150px;
+    height: 48px;
+    border-radius: 4px;
+}
+:host ::ng-deep .mat-horizontal-content-container {
+    padding:0 !important;
+}
+.bottom-strip{
+    height: 79px;
+    background-color: #f6f6f6;
+}
+::ng-deep .mat-horizontal-stepper-header-container {
+    width: fit-content;
+    margin: 0 50px;
+}
+.connection
+{
+    margin: 20px 50px;
+}
+.connectivity{
+    border:1px solid #979797;border-radius:4px;padding: 10px;
+}
+.resources {
+    border:1px solid #979797;border-radius:4px;padding: 10px;
+
+}

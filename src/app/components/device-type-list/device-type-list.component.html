@@ -1,0 +1,83 @@
+<router-outlet (activate)="onActivate($event)"></router-outlet>
+<section class="global-font main-box">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="head-strip">
+                <div class="head-text global-font">
+                    All Device Specifications
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid container-space">
+        <div class="row flex">
+            <div>
+                <button mat-raised-button class="fancy-btn" routerLink="/device-types">New Specification</button>
+            </div>
+            <div class="pull-right ml-auto">
+                <div class="flex">
+                    <div class="right-inner-addon input-container">
+                        <i class="fa fa-search"></i>
+                        <input type="text" class="search-global" (keyup)="applyFilter($event.target.value)"
+                            placeholder="Search" />
+                    </div>
+                    <div class="pt5px">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="table-responsive box-shadow">
+                <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+                    <tr>
+                        <!-- S no Column -->
+                        <ng-container matColumnDef="sNo">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> <span class="tab-head-text"> S.No
+                                </span>
+                            </th>
+                            <td mat-cell *matCellDef="let element"> {{element.sNo}} </td>
+                        </ng-container>
+
+                        <!-- Device Type Column -->
+                        <ng-container matColumnDef="name">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> <span class="tab-head-text"> Device
+                                    Type
+                                </span> </th>
+                            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                        </ng-container>
+
+                        <!-- Number Of Parameters Column -->
+                        <ng-container matColumnDef="numberOfParams">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> <span class="tab-head-text"> Number
+                                    Of
+                                    Parameters </span> </th>
+                            <td mat-cell *matCellDef="let element"> {{element.numberOfParams}} </td>
+                        </ng-container>
+
+                        <!-- Action Column -->
+                        <ng-container matColumnDef="action">
+                            <th mat-header-cell *matHeaderCellDef> <span class="tab-head-text"> </span> </th>
+                            <td mat-cell *matCellDef="let row text-right">
+                                <button mat-icon-button class="send-color" (click)="onSelectedItem(row)"
+                                    [matMenuTriggerFor]="sendMenu">
+                                    <mat-icon>more_vert</mat-icon>
+                                </button>
+                            </td>
+                        </ng-container>
+                    </tr>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+            </div>
+            <mat-paginator [pageSizeOptions]="[10, 20]" showFirstLastButtons></mat-paginator>
+        </div>
+    </div>
+</section>
+
+<mat-menu #sendMenu="matMenu">
+    <button mat-menu-item (click)="viewDeviceType()">View</button>
+    <button mat-menu-item (click)="delete()">Delete</button>
+</mat-menu>
